@@ -1,16 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
   --font-serif: 'Newsreader', Georgia, Cambria, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --usa-blue: #0056B3;
+  --usa-dark-blue: #0A2540;
+  --abc-red: #D90429;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: #FAFAFA;
-  color: #111827;
+  background-color: #F8F9FA;
+  color: #0F172A;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .font-editorial {
@@ -23,7 +27,7 @@ body {
   font-feature-settings: "tnum";
 }
 
-/* Custom scrollbars */
+/* Scrollbar utilities */
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
@@ -32,22 +36,102 @@ body {
   scrollbar-width: none;
 }
 
-/* Subtle transitions */
+/* Smooth transitions */
 .transition-smooth {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Clean News Card Accents */
+/* USA Today & ABC News Card Elevations */
 .card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease;
 }
 .card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.07), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  border-color: #CBD5E1;
 }
 
 /* Smart Brevity Callout Box */
 .why-it-matters-box {
-  background: #FFFBEB;
-  border-left: 3px solid #D97706;
+  background: #FEF3C7;
+  border-left: 4px solid #D97706;
+}
+
+/* ABC News Live Pulse */
+@keyframes pulseRedDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.6;
+  }
+}
+.animate-pulse-red {
+  animation: pulseRedDot 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Sound Wave Animation for 60s Brief */
+@keyframes soundWave {
+  0%, 100% {
+    height: 4px;
+  }
+  50% {
+    height: 16px;
+  }
+}
+.wave-bar {
+  width: 3px;
+  background-color: currentColor;
+  border-radius: 9999px;
+  display: inline-block;
+}
+.wave-playing .wave-bar:nth-child(1) { animation: soundWave 0.8s ease-in-out infinite; }
+.wave-playing .wave-bar:nth-child(2) { animation: soundWave 0.6s ease-in-out 0.2s infinite; }
+.wave-playing .wave-bar:nth-child(3) { animation: soundWave 0.9s ease-in-out 0.4s infinite; }
+.wave-playing .wave-bar:nth-child(4) { animation: soundWave 0.7s ease-in-out 0.1s infinite; }
+
+/* Horizontal Carousel Snap */
+.carousel-snap {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.carousel-snap-item {
+  scroll-snap-align: start;
+}
+
+/* Shimmer animation on refresh */
+@keyframes crossFadeShimmer {
+  from {
+    opacity: 0.75;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-cross-fade {
+  animation: crossFadeShimmer 0.35s ease-out forwards;
+}
+
+/* Channel Header Active Pill */
+.channel-pill {
+  position: relative;
+  transition: all 0.2s ease;
+}
+.channel-pill.active {
+  color: #0F172A;
+  font-weight: 700;
+}
+.channel-pill.active::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #0056B3;
+  border-radius: 2px 2px 0 0;
 }

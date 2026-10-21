@@ -523,13 +523,57 @@ function pauseDailyAudio() {
 
 function updateAudioPlayButton() {
   const icon = document.getElementById('audio-play-state-icon');
+  const wave = document.getElementById('audio-wave-bars');
   const label = document.getElementById('audio-status-label');
   if (icon) {
     icon.setAttribute('data-lucide', isAudioPlaying ? 'pause' : 'play');
     if (window.lucide) lucide.createIcons();
   }
+  if (wave) {
+    if (isAudioPlaying) {
+      wave.classList.add('wave-playing');
+    } else {
+      wave.classList.remove('wave-playing');
+    }
+  }
   if (label) {
     label.textContent = isAudioPlaying ? 'Playing' : 'Paused';
+  }
+}
+
+// Live Breaking News Ticker (USA Today & ABC News Style)
+const TICKER_HEADLINES = [
+  { text: "Federal Reserve maintains benchmark rate; 30-year mortgages ease to 5.85%", link: "/news/us-federal-reserve-signals-neutral-rate-corridor/" },
+  { text: "DOT unlocks $4.2B for 8,500 highway EV charging stalls along I-80 & I-90", link: "/news/bipartisan-us-infrastructure-act-ev-corridor/" },
+  { text: "Texas consortium activates 1.2GW off-grid solar-nuclear AI data center", link: "/news/silicon-valley-ai-supercomputing-hub-texas/" },
+  { text: "FDA approves 15-minute blood test detecting early Alzheimer's biomarkers", link: "/news/us-fda-grants-accelerated-approval-alzheimers/" },
+  { text: "Supreme Court mandates Fourth Amendment warrants for commercial geofence data", link: "/news/us-supreme-court-issues-digital-privacy-ruling/" }
+];
+let tickerIndex = 0;
+
+function initBreakingTicker() {
+  const tickerEl = document.getElementById('live-ticker-text');
+  const linkEl = document.getElementById('live-ticker-link');
+  if (!tickerEl || !linkEl) return;
+
+  setInterval(() => {
+    tickerIndex = (tickerIndex + 1) % TICKER_HEADLINES.length;
+    tickerEl.style.opacity = '0';
+    tickerEl.style.transform = 'translateY(3px)';
+    
+    setTimeout(() => {
+      tickerEl.textContent = TICKER_HEADLINES[tickerIndex].text;
+      linkEl.href = TICKER_HEADLINES[tickerIndex].link;
+      tickerEl.style.opacity = '1';
+      tickerEl.style.transform = 'translateY(0)';
+    }, 250);
+  }, 5000);
+}
+
+function scrollCarousel(containerId, distance) {
+  const el = document.getElementById(containerId);
+  if (el) {
+    el.scrollBy({ left: distance, behavior: 'smooth' });
   }
 }
 
@@ -595,6 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateTimestampDisplay();
   initSilentAutoRefresh();
+  initBreakingTicker();
   renderNewsGrid('all');
   renderTop10Cards('instagram');
   populateProactiveStories();

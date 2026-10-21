@@ -15,7 +15,7 @@ HOSTINGER_API_BASE = "https://developers.hostinger.com"
 TOKEN = "7VnTVVvuBguohqbZcynxEI12DRd8l8SyE37rPBlLfebb376d"
 USERNAME = "u971630663"
 DOMAIN = "whatisinnewstoday.com"
-DEFAULT_REPO_URL = "https://github.com/ideepakmathur/whatisinnewstoday.git"
+DEFAULT_REPO_URL = "https://github.com/ideepakmathur/what-is-in-news-today.git"
 
 def make_request(path, method="GET", body=None):
     ctx = ssl._create_unverified_context()
