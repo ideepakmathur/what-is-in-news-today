@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health & Medical Intelligence Hub | What Is In News Today</title>
+  <meta name="description" content="Verified, evidence-based reporting on Mental Health, Addictions, Medical Detox, Behavioral Intervention, and Clinical Psychiatry. Backed by NIH, CDC, FDA, and SAMHSA.">
+  <link rel="canonical" href="https://whatisinnewstoday.com/health/">
+
+  <!-- OpenGraph & Social Cards -->
+  <meta property="og:title" content="Health & Medical Intelligence Hub | What Is In News Today">
+  <meta property="og:description" content="Verified clinical health dispatches covering Mental Health, Addictions, Detox, Intervention, and Psychiatry.">
+  <meta property="og:image" content="https://whatisinnewstoday.com/assets/og-featured.png">
+  <meta property="og:url" content="https://whatisinnewstoday.com/health/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://whatisinnewstoday.com/assets/og-featured.png">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Health & Medical Intelligence Hub",
+    "description": "Verified health news across Mental Health, Addictions, Detox, Intervention, and Psychiatry.",
+    "url": "https://whatisinnewstoday.com/health/",
+    "publisher": {
+      "@type": "NewsMediaOrganization",
+      "name": "What Is In News Today",
+      "url": "https://whatisinnewstoday.com",
+      "logo": "https://whatisinnewstoday.com/assets/og-featured.png"
+    }
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Custom Editorial CSS -->
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="bg-[#F8F9FA] dark:bg-[#0B0F17] text-zinc-900 dark:text-zinc-100 min-h-screen flex flex-col font-sans transition-colors duration-200 selection:bg-zinc-900 selection:text-white">
+
+  <!-- Skip to Content (WCAG 2.1 AA) -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg">
+    Skip to main content
+  </a>
+
+  <!-- Top Breaking & Utilities Bar -->
+  <div class="border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0E131F] text-xs text-zinc-700 dark:text-zinc-300 py-2 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-600 text-white font-bold text-[10px] uppercase">
+          HEALTH WIRE
+        </span>
+        <span class="font-medium text-zinc-600 dark:text-zinc-400">Verified Clinical & Public Health Dispatches</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Preferred Source Badge -->
+        <button onclick="openPreferredSourceModal()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-700 text-amber-900 dark:text-amber-200 font-bold text-[11px] hover:bg-amber-100 transition-colors" title="Follow WhatIsInNewsToday on Google News">
+          <i data-lucide="star" class="h-3 w-3 fill-amber-500 text-amber-500"></i>
+          <span>Add to Preferred Sources</span>
+        </button>
+
+        <!-- Dark/Light Theme Switcher -->
+        <button onclick="toggleTheme()" id="theme-toggle-btn" class="p-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-stone-50 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 hover:bg-stone-100 transition-colors" aria-label="Toggle dark mode" title="Toggle color theme">
+          <i data-lucide="moon" id="theme-icon" class="h-3.5 w-3.5"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Masthead -->
+  <header class="border-b border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-[#0E131F]/95 sticky top-0 z-30 shadow-sm backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-baseline gap-2 group">
+        <span class="font-editorial text-2xl sm:text-3xl font-black tracking-tight text-zinc-950 dark:text-white group-hover:text-blue-700 transition-colors">
+          WHAT IS IN NEWS TODAY
+        </span>
+        <span class="font-mono-numbers text-xs font-semibold text-zinc-400">.com</span>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <a href="/" class="text-xs font-semibold text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white">← All News</a>
+        <a href="#newsletter-section" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 transition-colors shadow-sm">
+          <span>Subscribe Free</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Health Specialized Sub-Categories Navigation -->
+    <div class="border-t border-zinc-100 dark:border-zinc-800/80 bg-stone-50 dark:bg-[#0B0F17]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <nav class="flex items-center gap-6 overflow-x-auto py-2.5 text-xs font-bold text-zinc-600 dark:text-zinc-400 scrollbar-none whitespace-nowrap" aria-label="Health channels">
+          <a href="/health/" class="channel-pill active text-emerald-700 dark:text-emerald-400">HEALTH OVERVIEW</a>
+          <a href="/health/mental-health/" class="channel-pill hover:text-zinc-950 dark:hover:text-white">MENTAL HEALTH</a>
+          <a href="/health/addictions/" class="channel-pill hover:text-zinc-950 dark:hover:text-white">ADDICTIONS</a>
+          <a href="/health/detox/" class="channel-pill hover:text-zinc-950 dark:hover:text-white">MEDICAL DETOX</a>
+          <a href="/health/intervention/" class="channel-pill hover:text-zinc-950 dark:hover:text-white">INTERVENTION</a>
+          <a href="/health/psychiatry/" class="channel-pill hover:text-zinc-950 dark:hover:text-white">PSYCHIATRY</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="flex-1 max-w-7xl mx-auto px-4 sm:px-8 py-10 w-full">
+    
+    <!-- Health Hub Header -->
+    <div class="mb-10 pb-6 border-b border-zinc-200 dark:border-zinc-800">
+      <div class="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-emerald-700 dark:text-emerald-400 uppercase mb-2">
+        <i data-lucide="activity" class="h-4 w-4"></i>
+        <span>Clinical Science, Therapeutics & Public Health</span>
+      </div>
+      <h1 class="font-editorial text-3xl sm:text-5xl font-black text-zinc-950 dark:text-white tracking-tight mb-3">
+        Health & Behavioral Intelligence
+      </h1>
+      <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
+        Evidence-based reporting on mental wellness, addiction recovery, psychiatric innovation, and detoxification medicine. Verified directly against clinical trials, peer-reviewed journals, and federal regulatory filings.
+      </p>
+
+      <!-- 988 Crisis Lifeline Banner (Critical Public Health Utility) -->
+      <div class="mt-6 p-4 rounded-2xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-2.5">
+          <span class="h-8 w-8 rounded-xl bg-blue-700 text-white flex items-center justify-center font-bold shrink-0">988</span>
+          <div>
+            <strong class="text-blue-950 dark:text-blue-200">National Suicide & Crisis Lifeline:</strong>
+            <span class="text-blue-900 dark:text-blue-300 ml-1">Free, confidential support available 24/7 in the United States. Call or text 988.</span>
+          </div>
+        </div>
+        <a href="https://988lifeline.org" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-bold shrink-0 transition-colors">
+          Visit 988 Website →
+        </a>
+      </div>
+    </div>
+
+    <!-- Category Portals Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+
+      <!-- Mental Health -->
+      <div class="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 p-6 shadow-sm card-hover flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-2xl bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300">
+              <i data-lucide="brain" class="h-6 w-6"></i>
+            </span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-purple-700 dark:text-purple-400">Section 01</span>
+          </div>
+          <h2 class="font-editorial text-2xl font-bold text-zinc-950 dark:text-white mb-2">
+            <a href="/health/mental-health/" class="hover:text-blue-700 transition-colors">Mental Health</a>
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
+            Therapeutic modalities, depression & anxiety clinical trials, cognitive behavioral updates, and NIMH research findings.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-xs">
+          <span class="text-zinc-500 font-mono-numbers">NIH & APA Cited</span>
+          <a href="/health/mental-health/" class="font-bold text-purple-700 dark:text-purple-400 hover:underline flex items-center gap-1">
+            <span>Explore Hub</span>
+            <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Addictions -->
+      <div class="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 p-6 shadow-sm card-hover flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-2xl bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300">
+              <i data-lucide="shield-alert" class="h-6 w-6"></i>
+            </span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700 dark:text-rose-400">Section 02</span>
+          </div>
+          <h2 class="font-editorial text-2xl font-bold text-zinc-950 dark:text-white mb-2">
+            <a href="/health/addictions/" class="hover:text-blue-700 transition-colors">Addictions & Recovery</a>
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
+            Substance use disorder research, harm reduction, opioid policy settlements, and NIDA epidemiology statistics.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-xs">
+          <span class="text-zinc-500 font-mono-numbers">CDC & NIDA Cited</span>
+          <a href="/health/addictions/" class="font-bold text-rose-700 dark:text-rose-400 hover:underline flex items-center gap-1">
+            <span>Explore Hub</span>
+            <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Medical Detox -->
+      <div class="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 p-6 shadow-sm card-hover flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-2xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300">
+              <i data-lucide="stethoscope" class="h-6 w-6"></i>
+            </span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-400">Section 03</span>
+          </div>
+          <h2 class="font-editorial text-2xl font-bold text-zinc-950 dark:text-white mb-2">
+            <a href="/health/detox/" class="hover:text-blue-700 transition-colors">Medical Detox</a>
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
+            Inpatient withdrawal protocols, clinical stabilization guidelines, medication-assisted therapy (MAT), and ASAM criteria.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-xs">
+          <span class="text-zinc-500 font-mono-numbers">ASAM & SAMHSA Cited</span>
+          <a href="/health/detox/" class="font-bold text-cyan-700 dark:text-cyan-400 hover:underline flex items-center gap-1">
+            <span>Explore Hub</span>
+            <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Intervention -->
+      <div class="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 p-6 shadow-sm card-hover flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300">
+              <i data-lucide="users" class="h-6 w-6"></i>
+            </span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">Section 04</span>
+          </div>
+          <h2 class="font-editorial text-2xl font-bold text-zinc-950 dark:text-white mb-2">
+            <a href="/health/intervention/" class="hover:text-blue-700 transition-colors">Intervention Models</a>
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
+            Community behavioral crisis units, family CRAFT models, non-coercive intervention ethics, and mobile dispatch networks.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-xs">
+          <span class="text-zinc-500 font-mono-numbers">SAMHSA & NAMI Cited</span>
+          <a href="/health/intervention/" class="font-bold text-amber-700 dark:text-amber-400 hover:underline flex items-center gap-1">
+            <span>Explore Hub</span>
+            <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Psychiatry -->
+      <div class="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 p-6 shadow-sm card-hover flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300">
+              <i data-lucide="dna" class="h-6 w-6"></i>
+            </span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-400">Section 05</span>
+          </div>
+          <h2 class="font-editorial text-2xl font-bold text-zinc-950 dark:text-white mb-2">
+            <a href="/health/psychiatry/" class="hover:text-blue-700 transition-colors">Clinical Psychiatry</a>
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
+            Neuro-receptor discoveries, treatment-resistant depression protocols, transcranial magnetic stimulation (TMS), and APA updates.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-xs">
+          <span class="text-zinc-500 font-mono-numbers">JAMA & NEJM Cited</span>
+          <a href="/health/psychiatry/" class="font-bold text-indigo-700 dark:text-indigo-400 hover:underline flex items-center gap-1">
+            <span>Explore Hub</span>
+            <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Preferred Source Follow Card -->
+      <div class="bg-gradient-to-br from-blue-700 to-indigo-900 text-white rounded-3xl p-6 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/20 text-white inline-block mb-3">
+            DIRECT ACCREDITATION
+          </span>
+          <h2 class="font-editorial text-2xl font-bold mb-2">Follow Verified Health Wires</h2>
+          <p class="text-xs sm:text-sm text-blue-100 leading-relaxed mb-4">
+            Add WhatIsInNewsToday to your preferred news feed on Google News or Apple News for automatic updates on public health clearances.
+          </p>
+        </div>
+        <button onclick="openPreferredSourceModal()" class="w-full py-2.5 rounded-xl bg-white text-blue-900 font-bold text-xs hover:bg-blue-50 transition-colors">
+          ⭐ Add to Preferred Sources
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Official External Health Authorities Reference Matrix -->
+    <section class="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 p-6 sm:p-8 shadow-sm">
+      <h3 class="font-editorial text-xl font-bold text-zinc-950 dark:text-white mb-2">Authoritative Reference Matrix</h3>
+      <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-6">Our health desk links exclusively to verified primary scientific bodies and federal registries:</p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
+        <a href="https://www.nih.gov" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-stone-50 dark:bg-zinc-800 hover:bg-stone-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 text-center transition-colors">
+          <strong class="block text-zinc-900 dark:text-white">NIH.gov</strong>
+          <span class="text-[10px] text-zinc-500">Nat'l Institutes Health</span>
+        </a>
+        <a href="https://www.samhsa.gov" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-stone-50 dark:bg-zinc-800 hover:bg-stone-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 text-center transition-colors">
+          <strong class="block text-zinc-900 dark:text-white">SAMHSA.gov</strong>
+          <span class="text-[10px] text-zinc-500">Substance Abuse Desk</span>
+        </a>
+        <a href="https://nida.nih.gov" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-stone-50 dark:bg-zinc-800 hover:bg-stone-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 text-center transition-colors">
+          <strong class="block text-zinc-900 dark:text-white">NIDA.nih.gov</strong>
+          <span class="text-[10px] text-zinc-500">Drug Abuse Institute</span>
+        </a>
+        <a href="https://www.cdc.gov" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-stone-50 dark:bg-zinc-800 hover:bg-stone-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 text-center transition-colors">
+          <strong class="block text-zinc-900 dark:text-white">CDC.gov</strong>
+          <span class="text-[10px] text-zinc-500">Epidemiology & MMWR</span>
+        </a>
+        <a href="https://www.psychiatry.org" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-stone-50 dark:bg-zinc-800 hover:bg-stone-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 text-center transition-colors">
+          <strong class="block text-zinc-900 dark:text-white">Psychiatry.org</strong>
+          <span class="text-[10px] text-zinc-500">American Psychiatric</span>
+        </a>
+        <a href="https://jamanetwork.com/journals/jamapsychiatry" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-stone-50 dark:bg-zinc-800 hover:bg-stone-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 text-center transition-colors">
+          <strong class="block text-zinc-900 dark:text-white">JAMA Psychiatry</strong>
+          <span class="text-[10px] text-zinc-500">Peer-Reviewed Journal</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Primary Footer (No US Edition label) -->
+  <footer class="border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0E131F] mt-16 py-12 text-xs text-zinc-600 dark:text-zinc-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-zinc-200 dark:border-zinc-800">
+        <div class="md:col-span-1">
+          <a href="/" class="font-editorial text-xl font-bold text-zinc-950 dark:text-white mb-2 block">
+            WHAT IS IN NEWS TODAY
+          </a>
+          <p class="text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-sm mb-4">
+            Noise-free, verified daily news intelligence, Smart Brevity summaries, and top 10 viral reels across social platforms.
+          </p>
+          <!-- Preferred Badge in Footer -->
+          <button onclick="openPreferredSourceModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-700 text-amber-900 dark:text-amber-200 font-bold text-xs hover:bg-amber-100 transition-colors">
+            <i data-lucide="star" class="h-3.5 w-3.5 fill-amber-500 text-amber-500"></i>
+            <span>Add to Preferred Sources</span>
+          </button>
+        </div>
+
+        <div>
+          <h5 class="font-bold text-zinc-900 dark:text-white uppercase tracking-wider text-[11px] mb-3">Health Channels</h5>
+          <ul class="space-y-2">
+            <li><a href="/health/mental-health/" class="hover:text-zinc-950 dark:hover:text-white">Mental Health</a></li>
+            <li><a href="/health/addictions/" class="hover:text-zinc-950 dark:hover:text-white">Addictions & Recovery</a></li>
+            <li><a href="/health/detox/" class="hover:text-zinc-950 dark:hover:text-white">Medical Detox</a></li>
+            <li><a href="/health/intervention/" class="hover:text-zinc-950 dark:hover:text-white">Intervention Protocols</a></li>
+            <li><a href="/health/psychiatry/" class="hover:text-zinc-950 dark:hover:text-white">Clinical Psychiatry</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-bold text-zinc-900 dark:text-white uppercase tracking-wider text-[11px] mb-3">Top 10 Rankings</h5>
+          <ul class="space-y-2">
+            <li><a href="/top-10/" class="hover:text-zinc-950 dark:hover:text-white">Top 10 Directory</a></li>
+            <li><a href="/top-10/instagram/" class="hover:text-zinc-950 dark:hover:text-white">Instagram Reels</a></li>
+            <li><a href="/top-10/tiktok/" class="hover:text-zinc-950 dark:hover:text-white">TikTok Viral</a></li>
+            <li><a href="/top-10/youtube/" class="hover:text-zinc-950 dark:hover:text-white">YouTube Shorts</a></li>
+            <li><a href="/top-10/trends/" class="hover:text-zinc-950 dark:hover:text-white">Search Trends</a></li>
+            <li><a href="/top-10/archive/" class="hover:text-zinc-950 dark:hover:text-white text-blue-700 dark:text-blue-400 font-semibold">Browse Archives</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-bold text-zinc-900 dark:text-white uppercase tracking-wider text-[11px] mb-3">Policies & Preferences</h5>
+          <ul class="space-y-2">
+            <li><a href="/editorial/" class="hover:text-zinc-950 dark:hover:text-white">Editorial Standards & Ethics</a></li>
+            <li><a href="/privacy/" class="hover:text-zinc-950 dark:hover:text-white">Privacy & Cookie Policy</a></li>
+            <li><a href="/sponsor/" class="hover:text-zinc-950 dark:hover:text-white">Advertising & Media Kit</a></li>
+            <li><a href="/unsubscribe/" class="text-rose-600 hover:text-rose-700 font-semibold">Unsubscribe / Email Settings</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-400 text-[11px]">
+        <p>© 2026 WhatIsInNewsToday.com. All rights reserved.</p>
+        <p class="font-mono-numbers">Auto-refreshed silently every 30 minutes • Zero clickbait</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Preferred Source Modal -->
+  <div id="preferred-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-zinc-900 rounded-3xl max-w-md w-full p-6 sm:p-7 border border-zinc-200 dark:border-zinc-800 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <i data-lucide="star" class="h-5 w-5 fill-amber-500 text-amber-500"></i>
+          <h3 class="font-bold text-base text-zinc-950 dark:text-white">Add as Preferred Source</h3>
+        </div>
+        <button onclick="closePreferredSourceModal()" class="p-1 rounded-lg hover:bg-stone-100 dark:hover:bg-zinc-800 text-zinc-500">
+          <i data-lucide="x" class="h-4 w-4"></i>
+        </button>
+      </div>
+      <p class="text-xs text-zinc-600 dark:text-zinc-400 mb-5 leading-relaxed">
+        Stay updated with high-signal, noise-free intelligence by following WhatIsInNewsToday on your preferred reader or aggregator:
+      </p>
+
+      <div class="space-y-2.5 text-xs">
+        <a href="https://news.google.com" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-stone-50 dark:hover:bg-zinc-800 transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="h-7 w-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold">G</span>
+            <span class="font-semibold text-zinc-900 dark:text-white">Follow on Google News</span>
+          </div>
+          <i data-lucide="external-link" class="h-3.5 w-3.5 text-zinc-400"></i>
+        </a>
+
+        <button onclick="bookmarkCurrentPage()" class="w-full flex items-center justify-between p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-stone-50 dark:hover:bg-zinc-800 transition-colors text-left">
+          <div class="flex items-center gap-2.5">
+            <span class="h-7 w-7 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold">★</span>
+            <span class="font-semibold text-zinc-900 dark:text-white">Bookmark in Browser (Cmd+D / Ctrl+D)</span>
+          </div>
+          <span id="bookmark-status" class="text-[11px] text-zinc-400">Save</span>
+        </button>
+
+        <button onclick="copyRssFeed()" class="w-full flex items-center justify-between p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-stone-50 dark:hover:bg-zinc-800 transition-colors text-left">
+          <div class="flex items-center gap-2.5">
+            <span class="h-7 w-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">XML</span>
+            <span class="font-semibold text-zinc-900 dark:text-white">Copy Fast-Indexing Sitemap Feed</span>
+          </div>
+          <span id="rss-copy-status" class="text-[11px] text-blue-700 dark:text-blue-400 font-bold">Copy URL</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/site.js"></script>
+</body>
+</html>

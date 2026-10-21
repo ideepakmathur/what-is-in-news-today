@@ -125,6 +125,9 @@ body {
   color: #0F172A;
   font-weight: 700;
 }
+.dark .channel-pill.active {
+  color: #FFFFFF;
+}
 .channel-pill.active::after {
   content: '';
   position: absolute;
@@ -135,3 +138,25 @@ body {
   background-color: #0056B3;
   border-radius: 2px 2px 0 0;
 }
+.dark .channel-pill.active::after {
+  background-color: #38BDF8;
+}
+
+/* Dark Mode Callout Overrides */
+.dark .why-it-matters-box {
+  background: rgba(180, 83, 9, 0.15);
+  border-left: 4px solid #F59E0B;
+}
+.dark .why-it-matters-box p {
+  color: #FEF3C7;
+}
+
+/* Focus States for WCAG 2.1 AAA Accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+}
+.dark a:focus-visible, .dark button:focus-visible, .dark input:focus-visible {
+  outline: 2px solid #60A5FA;
+}
+

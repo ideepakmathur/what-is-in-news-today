@@ -226,11 +226,11 @@ function renderNewsGrid(filterCategory = 'all') {
     : NEWS_DATA.filter(it => it.category.toLowerCase() === filterCategory.toLowerCase());
 
   container.innerHTML = items.map(story => `
-    <article class="bg-white rounded-2xl border border-zinc-200/80 p-6 sm:p-7 shadow-sm card-hover flex flex-col justify-between">
+    <article class="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 p-6 sm:p-7 shadow-sm card-hover flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between gap-2 mb-3">
           <div class="flex items-center gap-2">
-            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700">
+            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
               ${story.category}
             </span>
             <span class="text-xs text-zinc-400 font-mono-numbers flex items-center gap-1">
@@ -239,19 +239,19 @@ function renderNewsGrid(filterCategory = 'all') {
             </span>
           </div>
 
-          <button onclick="readStoryAloud('${story.id}')" class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-800 hover:bg-zinc-100 transition-colors" title="Listen to summary">
+          <button onclick="readStoryAloud('${story.id}')" class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors" title="Listen to summary">
             <i data-lucide="volume-2" class="h-4 w-4"></i>
           </button>
         </div>
 
-        <h2 class="font-editorial text-xl sm:text-2xl font-bold text-zinc-900 leading-snug mb-3 hover:text-blue-700 transition-colors">
+        <h2 class="font-editorial text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white leading-snug mb-3 hover:text-blue-700 dark:hover:text-blue-400 transition-colors">
           <a href="${story.permalink}">${story.title}</a>
         </h2>
 
         <!-- Axios-Style Smart Brevity Bullets -->
         <div class="space-y-2 mb-5">
           ${story.summaryBullets.map(b => `
-            <div class="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 leading-relaxed">
+            <div class="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
               <span class="h-1.5 w-1.5 rounded-full bg-blue-600 mt-2 shrink-0"></span>
               <span>${b}</span>
             </div>
@@ -270,32 +270,32 @@ function renderNewsGrid(filterCategory = 'all') {
         </div>
 
         <!-- Perspectives Accordion -->
-        <div id="perspectives-${story.id}" class="hidden my-4 pt-3 border-t border-zinc-100 text-xs space-y-2.5">
+        <div id="perspectives-${story.id}" class="hidden my-4 pt-3 border-t border-zinc-100 dark:border-zinc-800 text-xs space-y-2.5">
           <div>
             <span class="font-bold uppercase tracking-wider text-zinc-500 text-[10px]">Consensus View:</span>
-            <p class="text-zinc-700 mt-0.5">${story.perspectives.consensus}</p>
+            <p class="text-zinc-700 dark:text-zinc-300 mt-0.5">${story.perspectives.consensus}</p>
           </div>
           ${story.perspectives.divergence ? `
             <div>
               <span class="font-bold uppercase tracking-wider text-zinc-500 text-[10px]">Counterpoint / Debate:</span>
-              <p class="text-zinc-700 mt-0.5">${story.perspectives.divergence}</p>
+              <p class="text-zinc-700 dark:text-zinc-300 mt-0.5">${story.perspectives.divergence}</p>
             </div>
           ` : ''}
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-zinc-100 text-xs">
-        <div class="flex items-center gap-2 text-zinc-500">
-          <span class="font-semibold text-zinc-700">${story.source}</span>
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-zinc-100 dark:border-zinc-800 text-xs">
+        <div class="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
+          <span class="font-semibold text-zinc-700 dark:text-zinc-300">${story.source}</span>
           <span>•</span>
           <span>${story.readTime}</span>
         </div>
 
         <div class="flex items-center gap-2">
-          <button onclick="togglePerspectives('${story.id}')" class="text-zinc-500 hover:text-zinc-900 py-1 px-2.5 rounded-lg hover:bg-zinc-100 transition-colors font-medium">
+          <button onclick="togglePerspectives('${story.id}')" class="text-zinc-500 hover:text-zinc-900 dark:hover:text-white py-1 px-2.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors font-medium">
             Debate View
           </button>
-          <a href="${story.permalink}" class="inline-flex items-center gap-1 text-blue-700 font-semibold py-1 px-2.5 rounded-lg hover:bg-blue-50 transition-colors">
+          <a href="${story.permalink}" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 font-semibold py-1 px-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-950/60 transition-colors">
             <span>Full Story</span>
             <i data-lucide="arrow-right" class="h-3 w-3"></i>
           </a>
@@ -328,30 +328,30 @@ function renderTop10Cards(platform = 'instagram') {
 
   const items = TOP10_DATA[platform] || [];
   container.innerHTML = items.slice(0, 6).map(it => `
-    <div class="bg-white rounded-2xl border border-zinc-200/90 p-4 sm:p-5 shadow-sm card-hover flex flex-col justify-between">
+    <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 p-4 sm:p-5 shadow-sm card-hover flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <div class="h-8 w-8 rounded-xl bg-zinc-900 text-white flex items-center justify-center font-bold text-xs font-mono-numbers">
+          <div class="h-8 w-8 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 flex items-center justify-center font-bold text-xs font-mono-numbers">
             #${it.rank}
           </div>
           <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md ${
-            it.level === 'Viral' ? 'bg-rose-50 text-rose-600 border border-rose-200' : 'bg-blue-50 text-blue-600 border border-blue-200'
+            it.level === 'Viral' ? 'bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-300 border border-rose-200 dark:border-rose-800' : 'bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-300 border border-blue-200 dark:border-blue-800'
           }">
             ${it.level === 'Viral' ? '🔥 Highly Viral' : '⚡ Trending'}
           </span>
         </div>
 
-        <h3 class="font-bold text-sm sm:text-base text-zinc-900 line-clamp-2 mb-1.5 leading-snug">
+        <h3 class="font-bold text-sm sm:text-base text-zinc-900 dark:text-white line-clamp-2 mb-1.5 leading-snug">
           ${it.title}
         </h3>
-        <p class="text-xs text-zinc-500 line-clamp-2 leading-relaxed mb-3">
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed mb-3">
           ${it.summary}
         </p>
       </div>
 
-      <div class="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs">
-        <span class="font-semibold text-zinc-700">${it.creator}</span>
-        <span class="font-mono-numbers font-medium text-blue-700">${it.views}</span>
+      <div class="pt-3 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-xs">
+        <span class="font-semibold text-zinc-700 dark:text-zinc-300">${it.creator}</span>
+        <span class="font-mono-numbers font-medium text-blue-700 dark:text-blue-400">${it.views}</span>
       </div>
     </div>
   `).join('');
@@ -393,12 +393,12 @@ function populateProactiveStories() {
   if (!container) return;
 
   container.innerHTML = NEWS_DATA.map((story, idx) => `
-    <button onclick="askBotQuestion('Explain full details: ${encodeURIComponent(story.title)}')" class="w-full text-left p-2.5 rounded-xl bg-white hover:bg-zinc-100 border border-zinc-200 transition-colors flex items-center justify-between group">
+    <button onclick="askBotQuestion('Explain full details: ${encodeURIComponent(story.title)}')" class="w-full text-left p-2.5 rounded-xl bg-white dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700/80 border border-zinc-200 dark:border-zinc-700 transition-colors flex items-center justify-between group">
       <div class="flex items-center gap-2 overflow-hidden mr-2">
-        <span class="h-5 w-5 rounded-md bg-zinc-100 text-zinc-700 font-bold text-[10px] flex items-center justify-center shrink-0">#${idx + 1}</span>
-        <span class="truncate text-xs font-medium text-zinc-800 group-hover:text-blue-700">${story.title}</span>
+        <span class="h-5 w-5 rounded-md bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-200 font-bold text-[10px] flex items-center justify-center shrink-0">#${idx + 1}</span>
+        <span class="truncate text-xs font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-blue-700 dark:group-hover:text-blue-400">${story.title}</span>
       </div>
-      <i data-lucide="chevron-right" class="h-3.5 w-3.5 text-zinc-400 group-hover:text-blue-600 shrink-0"></i>
+      <i data-lucide="chevron-right" class="h-3.5 w-3.5 text-zinc-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 shrink-0"></i>
     </button>
   `).join('');
 
@@ -623,8 +623,118 @@ function handleNewsletterSubmit(e) {
   }
 }
 
+// ==========================================
+// Theme Management (Light / Dark Mode with WCAG Compliance)
+// ==========================================
+function initTheme() {
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const activeTheme = saved ? saved : (prefersDark ? 'dark' : 'light');
+  setTheme(activeTheme);
+}
+
+function toggleTheme() {
+  const isDark = document.documentElement.classList.contains('dark');
+  setTheme(isDark ? 'light' : 'dark');
+}
+
+function setTheme(theme) {
+  if (theme === 'dark') {
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  }
+  updateThemeIcon();
+}
+
+function updateThemeIcon() {
+  const icon = document.getElementById('theme-icon');
+  if (!icon) return;
+  const isDark = document.documentElement.classList.contains('dark');
+  icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+}
+
+// Run immediately to prevent theme flash
+initTheme();
+
+// ==========================================
+// Preferred Source Modal & Feed Actions
+// ==========================================
+function openPreferredSourceModal() {
+  const modal = document.getElementById('preferred-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  }
+}
+
+function closePreferredSourceModal() {
+  const modal = document.getElementById('preferred-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  }
+}
+
+function bookmarkCurrentPage() {
+  const status = document.getElementById('bookmark-status');
+  const isMac = navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
+  const shortcut = isMac ? 'Cmd + D' : 'Ctrl + D';
+  if (status) {
+    status.textContent = `Press ${shortcut}`;
+    status.className = 'text-[11px] font-bold text-amber-600 dark:text-amber-400';
+    setTimeout(() => {
+      status.textContent = 'Save';
+      status.className = 'text-[11px] text-zinc-400';
+    }, 4000);
+  }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closePreferredSourceModal();
+  }
+});
+
+// ==========================================
+// Text-to-Speech Story Summary (Web Speech API)
+// ==========================================
+let currentStoryUtterance = null;
+function readStoryAloud(storyId) {
+  if (!('speechSynthesis' in window)) {
+    alert('Speech synthesis is not supported in this browser.');
+    return;
+  }
+
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+    return;
+  }
+
+  const article = document.querySelector('article');
+  if (!article) return;
+
+  const h1 = article.querySelector('h1')?.textContent || '';
+  const bullets = Array.from(article.querySelectorAll('strong')).map(s => s.parentElement?.textContent).filter(Boolean).slice(0, 3).join('. ');
+  const whyItMatters = article.querySelector('.why-it-matters-box p')?.textContent || '';
+  
+  const speechText = `${h1}. Key takeaways: ${bullets}. Why it matters: ${whyItMatters}`;
+  const utterance = new SpeechSynthesisUtterance(speechText);
+  utterance.rate = 1.05;
+  utterance.pitch = 1.0;
+  
+  window.speechSynthesis.speak(utterance);
+}
+
 // Initialize on DOM load
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   // Format live masthead date
   const mastheadDate = document.getElementById('masthead-date');
   if (mastheadDate) {
