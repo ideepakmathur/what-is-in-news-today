@@ -543,7 +543,7 @@ function setupAiAskForm() {
     copyBtn.addEventListener('click', () => {
       const q = document.getElementById('ai-answer-query').innerText;
       const s = document.getElementById('ai-answer-summary').innerText;
-      navigator.clipboard.writeText(`${q}\n\n${s}\n\nWhatIsInNewsToday.com US Edition`);
+      navigator.clipboard.writeText(`${q}\n\n${s}\n\nWhatIsInNewsToday.com`);
       document.getElementById('copy-btn-text').textContent = 'Copied!';
       setTimeout(() => document.getElementById('copy-btn-text').textContent = 'Copy', 2000);
     });

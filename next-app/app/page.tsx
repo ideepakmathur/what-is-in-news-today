@@ -252,7 +252,6 @@ export default function HomePage() {
                 <span className="font-bold text-lg text-zinc-900 dark:text-zinc-50">
                   WhatIsIn<span className="text-blue-600">NewsToday</span>.com
                 </span>
-                <span className="text-xs font-semibold px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600">US Edition</span>
               </div>
               <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 max-w-sm">
                 The objective, AI-curated daily US news intelligence and viral trends engine.

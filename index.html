@@ -3,502 +3,403 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>What Is In News Today | Curated US News & Top 10 Viral Trends</title>
-  <meta name="description" content="What is in US news today? Ask our AI chatbot, get objective 3-bullet summaries from verified primary wire sources, and explore today's top 10 viral reels across Instagram, TikTok, YouTube, and search trends.">
+  <title>What Is In News Today | Noise-Free Daily Intelligence & Top 10 Viral Trends</title>
+  <meta name="description" content="What is in news today? Verified 3-bullet facts, why it matters impact analysis, and today's top 10 viral reels across Instagram, TikTok, YouTube, and search trends.">
+  <link rel="canonical" href="https://whatisinnewstoday.com/">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    .scrollbar-none::-webkit-scrollbar { display: none; }
-    .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
-  </style>
+  <!-- Custom Editorial CSS -->
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
-<body class="bg-zinc-50 text-zinc-900 min-h-screen flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+<body class="bg-stone-50 text-zinc-900 min-h-screen flex flex-col font-sans selection:bg-zinc-900 selection:text-white">
 
-  <!-- Realtime Toast Banner -->
-  <div id="realtime-toast" class="hidden fixed top-20 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-4 duration-300">
-    <div class="bg-zinc-900 text-white border border-blue-500/40 rounded-full shadow-2xl px-5 py-2.5 flex items-center gap-3 text-xs sm:text-sm">
-      <span class="flex h-2 w-2 relative">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-      </span>
-      <span id="realtime-toast-text" class="font-semibold text-zinc-100 truncate max-w-xs sm:max-w-md">
-        ⚡ New US story aggregated in realtime!
-      </span>
-      <button onclick="refreshFeedData()" class="px-3 py-1 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs flex items-center gap-1 shadow-sm shrink-0">
-        <i data-lucide="refresh-cw" class="h-3 w-3"></i>
-        <span>Update Feed</span>
-      </button>
-      <button onclick="document.getElementById('realtime-toast').classList.add('hidden')" class="text-zinc-400 hover:text-white p-0.5">
-        <i data-lucide="x" class="h-3.5 w-3.5"></i>
-      </button>
+  <!-- Top Utilities Bar -->
+  <div class="border-b border-zinc-200 bg-white text-xs text-zinc-500 py-1.5 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5">
+      <div class="flex items-center gap-3">
+        <span id="masthead-date" class="font-medium text-zinc-700">Wednesday, October 21, 2026</span>
+        <span class="text-zinc-300">•</span>
+        <span class="inline-flex items-center gap-1.5 font-medium text-emerald-700">
+          <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Live Wire
+        </span>
+        <span class="text-zinc-300">•</span>
+        <span id="last-sync-indicator" class="font-mono-numbers text-zinc-500">Auto-refreshes every 30m</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="/top-10/" class="font-semibold text-rose-600 hover:text-rose-700 flex items-center gap-1">
+          <i data-lucide="flame" class="h-3.5 w-3.5"></i>
+          <span>Today's Top 10</span>
+        </a>
+        <a href="/editorial/" class="hover:text-zinc-900 transition-colors">Editorial Standards</a>
+        <a href="/sponsor/" class="hover:text-zinc-900 transition-colors">Media Kit</a>
+      </div>
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="border-b border-zinc-200 bg-white/90 backdrop-blur-md sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
-          <i data-lucide="newspaper" class="h-5 w-5"></i>
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="font-bold text-lg tracking-tight text-zinc-900">
-              WhatIsIn<span className="text-blue-600">NewsToday</span>.com
-            </span>
-            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-blue-100 text-blue-700 border border-blue-200">
-              <span class="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse"></span>
-              US Edition
-            </span>
-          </div>
-          <p id="live-date-header" class="text-xs text-zinc-500">Curated US Intelligence & Top 10 Trends</p>
-        </div>
-      </div>
+  <!-- Primary Masthead -->
+  <header class="border-b border-zinc-200 bg-white sticky top-0 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
+      <!-- Clean Brand (No "US Edition" label) -->
+      <a href="/" class="flex items-baseline gap-2 group">
+        <h1 class="font-editorial text-2xl sm:text-3xl font-black tracking-tight text-zinc-950 group-hover:text-blue-700 transition-colors">
+          WHAT IS IN NEWS TODAY
+        </h1>
+        <span class="font-mono-numbers text-[11px] font-semibold text-zinc-400 hidden md:inline">.com</span>
+      </a>
 
-      <div class="flex items-center gap-2 sm:gap-3">
-        <a href="#top10-section" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-rose-600 hover:bg-rose-50 border border-rose-200 transition-colors">
-          <i data-lucide="flame" class="h-3.5 w-3.5"></i>
-          <span>Top 10 Reels</span>
-        </a>
+      <!-- Quick Nav Links -->
+      <nav class="hidden lg:flex items-center gap-5 text-xs font-semibold text-zinc-600">
+        <a href="/top-10/instagram/" class="hover:text-zinc-900 transition-colors">Instagram Reels</a>
+        <a href="/top-10/tiktok/" class="hover:text-zinc-900 transition-colors">TikTok Viral</a>
+        <a href="/top-10/youtube/" class="hover:text-zinc-900 transition-colors">YouTube Shorts</a>
+        <a href="/top-10/trends/" class="hover:text-zinc-900 transition-colors">Search Trends</a>
+        <a href="/top-10/archive/" class="hover:text-zinc-900 transition-colors">Past Archives</a>
+      </nav>
 
-        <button id="btn-audio-briefing-toggle" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 text-zinc-700 hover:bg-zinc-50 transition-colors">
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2.5">
+        <button onclick="toggleAudioBriefing()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-zinc-200 text-zinc-800 hover:bg-zinc-100 transition-colors" title="Listen to 60-second synthesized brief">
           <i data-lucide="volume-2" class="h-3.5 w-3.5 text-blue-600"></i>
-          <span>60s Audio Brief</span>
+          <span class="hidden sm:inline">60s Audio Brief</span>
         </button>
 
-        <a href="#newsletter-section" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-zinc-900 text-white hover:bg-zinc-800 transition-colors shadow-sm">
-          <i data-lucide="bell" class="h-3.5 w-3.5"></i>
+        <a href="#newsletter-section" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-zinc-900 text-white hover:bg-zinc-800 transition-colors shadow-sm">
+          <i data-lucide="mail" class="h-3.5 w-3.5"></i>
           <span>Subscribe</span>
         </a>
 
-        <button id="btn-open-pro" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 text-white transition-all shadow-sm shadow-orange-500/20">
+        <button onclick="toggleNewsDeskAssistant()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-700 hover:bg-blue-800 text-white transition-colors shadow-sm">
           <i data-lucide="sparkles" class="h-3.5 w-3.5"></i>
-          <span>PRO</span>
+          <span>Ask AI Desk</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Main Hero & AI Engine -->
-  <main class="flex-1">
-    <div class="w-full max-w-4xl mx-auto my-8 px-4 text-center">
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 mb-3">
-        <i data-lucide="shield" class="h-3.5 w-3.5 text-blue-600"></i>
-        <span>100% Curated From Verified US Wire Sources • Zero Clickbait</span>
+  <!-- 60-Second Audio Player Bar (Collapsible) -->
+  <div id="audio-brief-bar" class="hidden border-b border-blue-200 bg-blue-50/90 text-blue-950 px-4 py-2.5 transition-all">
+    <div class="max-w-7xl mx-auto flex items-center justify-between text-xs">
+      <div class="flex items-center gap-3">
+        <button onclick="pauseDailyAudio()" class="h-7 w-7 rounded-full bg-blue-700 text-white flex items-center justify-center hover:bg-blue-800 transition-colors">
+          <i data-lucide="play" id="audio-play-state-icon" class="h-3.5 w-3.5"></i>
+        </button>
+        <div>
+          <span class="font-bold">Today's 60-Second Audio Brief:</span>
+          <span class="text-blue-800 ml-1 hidden sm:inline">Curated macro developments in economy, infrastructure & tech.</span>
+        </div>
       </div>
-      <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-zinc-900 mb-3">
-        What is in US news today?
-      </h1>
-      <p class="text-base sm:text-lg text-zinc-600 max-w-2xl mx-auto mb-6">
-        Ask anything about today’s American events, or browse our 3-bullet verified summaries, why it matters, and the day's top 10 viral reels.
+
+      <div class="flex items-center gap-3">
+        <button onclick="cycleAudioSpeed()" id="audio-speed-btn" class="px-2 py-0.5 rounded bg-blue-200/80 font-mono-numbers font-semibold text-blue-900 hover:bg-blue-200">
+          1.0x
+        </button>
+        <span id="audio-status-label" class="text-blue-700 font-mono-numbers">Ready</span>
+        <button onclick="toggleAudioBriefing()" class="text-blue-800 hover:text-blue-950 p-1">
+          <i data-lucide="x" class="h-4 w-4"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-8 py-8 w-full">
+
+    <!-- FRONT PAGE HERO: Smart Brevity Lead -->
+    <div class="border-b border-zinc-200 pb-10 mb-10">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="h-2 w-2 rounded-full bg-rose-600"></span>
+        <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Top Story • 28m ago</span>
+      </div>
+
+      <h2 class="font-editorial text-3xl sm:text-5xl font-extrabold text-zinc-950 leading-tight mb-4">
+        <a href="/news/us-federal-reserve-signals-neutral-rate-corridor/" class="hover:text-blue-700 transition-colors">
+          Federal Reserve Signals Neutral Rate Corridor as Core Inflation Settles at 2.3%
+        </a>
+      </h2>
+
+      <p class="text-lg sm:text-xl text-zinc-700 font-medium leading-relaxed max-w-4xl mb-6">
+        <strong>The bottom line:</strong> The Federal Reserve affirmed benchmark rate stability following resilient consumer spending data, triggering fixed 30-year US mortgages to drop to 5.85%—their lowest level in over two years.
       </p>
 
-      <!-- Search / Ask Form -->
-      <form id="ai-ask-form" class="relative group text-left">
-        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 opacity-20 group-hover:opacity-40 blur transition duration-300"></div>
-        <div class="relative flex items-center bg-white border border-zinc-200 rounded-2xl shadow-xl shadow-zinc-200/50 p-2 sm:p-2.5">
-          <div class="pl-3 pr-2 text-zinc-400">
-            <i data-lucide="sparkles" class="h-5 w-5 text-blue-600"></i>
-          </div>
-          <input
-            id="ai-query-input"
-            type="text"
-            placeholder="Ask anything... e.g. 'What did the Federal Reserve decide today?', 'US Supreme Court privacy ruling'"
-            class="w-full bg-transparent text-sm sm:text-base text-zinc-900 placeholder:text-zinc-400 focus:outline-none px-2 py-1.5"
-          />
-          <button
-            type="submit"
-            id="btn-submit-query"
-            class="inline-flex items-center gap-1.5 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm transition-all shadow-md shadow-blue-500/20 shrink-0"
-          >
-            <span id="btn-submit-text">Ask AI</span>
-            <i data-lucide="arrow-right" class="h-4 w-4"></i>
-          </button>
-        </div>
-      </form>
-
-      <!-- Quick Suggestion Pills -->
-      <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
-        <span class="text-xs text-zinc-400 font-medium mr-1 hidden sm:inline">Try asking:</span>
-        <button class="quick-pill text-xs px-3 py-1.5 rounded-full bg-zinc-100 hover:bg-blue-50 text-zinc-700 hover:text-blue-600 border border-zinc-200 transition-colors" data-q="What did the Federal Reserve announce about interest rates and inflation today?">
-          📈 Fed & Inflation
-        </button>
-        <button class="quick-pill text-xs px-3 py-1.5 rounded-full bg-zinc-100 hover:bg-blue-50 text-zinc-700 hover:text-blue-600 border border-zinc-200 transition-colors" data-q="Explain the US Supreme Court ruling on digital privacy and location tracking">
-          ⚖️ Supreme Court Ruling
-        </button>
-        <button class="quick-pill text-xs px-3 py-1.5 rounded-full bg-zinc-100 hover:bg-blue-50 text-zinc-700 hover:text-blue-600 border border-zinc-200 transition-colors" data-q="What is the new FDA approved Alzheimer's 15-minute blood test?">
-          🧬 FDA Blood Test
-        </button>
-        <button class="quick-pill text-xs px-3 py-1.5 rounded-full bg-zinc-100 hover:bg-blue-50 text-zinc-700 hover:text-blue-600 border border-zinc-200 transition-colors" data-q="Where is the new US electric vehicle fast-charging network being built?">
-          🚗 Interstate EV Grid
-        </button>
-        <button class="quick-pill text-xs px-3 py-1.5 rounded-full bg-zinc-100 hover:bg-blue-50 text-zinc-700 hover:text-blue-600 border border-zinc-200 transition-colors" data-q="Summarize today's top 5 essential US news stories in 3 bullets each">
-          🎯 Top 5 US Summary
-        </button>
-      </div>
-    </div>
-
-    <!-- Live AI Answer Container -->
-    <div id="ai-answer-wrapper" class="hidden w-full max-w-4xl mx-auto my-6 px-4">
-      <div class="relative rounded-2xl bg-white border border-blue-200 shadow-xl shadow-blue-500/5 p-6 sm:p-8 overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600"></div>
-
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <div class="flex items-center gap-2">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
-              <i data-lucide="sparkles" class="h-3.5 w-3.5 text-blue-600"></i>
-              Verified US Intelligence
-            </span>
-            <span id="ai-meta-info" class="text-xs text-zinc-500">98% wire consensus • Just now</span>
-          </div>
-          <button id="btn-copy-answer" class="inline-flex items-center gap-1 text-xs text-zinc-600 hover:text-zinc-900 px-2.5 py-1 rounded-md border border-zinc-200 hover:bg-zinc-50 transition-colors">
-            <i data-lucide="copy" class="h-3.5 w-3.5"></i>
-            <span id="copy-btn-text">Copy</span>
-          </button>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-zinc-200">
+        <div class="p-4 rounded-xl bg-white border border-zinc-200/80">
+          <span class="text-xs font-bold uppercase tracking-wider text-zinc-500 block mb-1">1. The Macro Picture</span>
+          <p class="text-xs sm:text-sm text-zinc-700 leading-relaxed">
+            Core CPI printed at 2.3% annualized, within central bank tolerance bands for household staples and energy freight.
+          </p>
         </div>
 
-        <h2 id="ai-answer-query" class="text-xl sm:text-2xl font-bold text-zinc-900 mb-3"></h2>
-        <p id="ai-answer-summary" class="text-base text-zinc-700 leading-relaxed mb-6"></p>
-
-        <div class="mb-6 bg-zinc-50 rounded-xl p-4 sm:p-5 border border-zinc-200/80">
-          <h3 class="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">Core Facts & Impact</h3>
-          <ul id="ai-takeaways-list" class="space-y-2.5"></ul>
+        <div class="p-4 rounded-xl bg-white border border-zinc-200/80">
+          <span class="text-xs font-bold uppercase tracking-wider text-zinc-500 block mb-1">2. Credit & Real Estate Impact</span>
+          <p class="text-xs sm:text-sm text-zinc-700 leading-relaxed">
+            Borrowing costs eased for regional businesses, while national home mortgage applications saw a double-digit weekly rebound.
+          </p>
         </div>
 
-        <div class="mb-6">
-          <h3 class="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">Verified US Primary Citations</h3>
-          <div id="ai-citations-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-        </div>
-
-        <div id="ai-followups-container" class="pt-4 border-t border-zinc-200">
-          <div class="flex items-center gap-1.5 text-xs font-semibold text-zinc-500 mb-2.5">
-            <i data-lucide="message-square" class="h-3.5 w-3.5 text-blue-500"></i>
-            <span>Recommended Follow-ups:</span>
-          </div>
-          <div id="ai-followups-pills" class="flex flex-wrap gap-2"></div>
+        <div class="p-4 rounded-xl why-it-matters-box">
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-800 block mb-1">3. Why It Matters</span>
+          <p class="text-xs sm:text-sm text-amber-950 font-medium leading-relaxed">
+            Signals that the US has engineered a soft landing, protecting household balance sheets from restrictive borrowing pressure.
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- [Today] Top 10 Viral Reels & Trends Section -->
-    <section id="top10-section" class="w-full max-w-6xl mx-auto px-4 my-10">
-      <div class="rounded-3xl bg-white border border-zinc-200 p-6 sm:p-8 shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-zinc-200">
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <i data-lucide="flame" class="h-4 w-4 text-rose-500"></i>
-              <span class="text-xs font-bold uppercase tracking-wider text-rose-600">
-                [Today] Social & Search Pulse
-              </span>
-            </div>
-            <h2 class="text-xl sm:text-2xl font-black text-zinc-900">
-              Top 10 Viral Reels & Trends
-            </h2>
+    <!-- [TODAY] TOP 10 VIRAL REELS & SEARCH TRENDS SECTION -->
+    <section class="mb-14">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-zinc-200">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <i data-lucide="flame" class="h-4 w-4 text-rose-600"></i>
+            <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Today's Pulse</span>
           </div>
+          <h2 class="font-editorial text-2xl sm:text-3xl font-extrabold text-zinc-950">
+            Top 10 Viral Reels & Search Trends
+          </h2>
+        </div>
 
-          <div class="flex items-center gap-2">
-            <button onclick="openArchiveModal()" class="text-xs font-semibold px-3 py-1.5 rounded-lg border border-zinc-200 text-zinc-600 hover:bg-zinc-50 flex items-center gap-1">
-              <i data-lucide="calendar" class="h-3.5 w-3.5"></i>
-              <span>Past Archives</span>
+        <div class="flex items-center gap-2">
+          <a href="/top-10/archive/" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-200 text-xs font-semibold text-zinc-600 hover:bg-zinc-100 transition-colors">
+            <i data-lucide="calendar" class="h-3.5 w-3.5"></i>
+            <span>Browse Past Archives</span>
+          </a>
+          <a id="view-full-top10-link" href="/top-10/instagram/" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-zinc-900 text-white text-xs font-bold hover:bg-zinc-800 transition-colors">
+            <span>Explore Full Top 10</span>
+            <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Platform Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 scrollbar-none border-b border-zinc-100">
+        <button onclick="switchTop10Platform('instagram')" id="tab-top10-instagram" class="top10-tab-btn active inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-zinc-900 text-white shadow-sm transition-all whitespace-nowrap">
+          <i data-lucide="instagram" class="h-4 w-4 text-pink-500"></i>
+          <span>Instagram Reels</span>
+        </button>
+        <button onclick="switchTop10Platform('tiktok')" id="tab-top10-tiktok" class="top10-tab-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-zinc-600 hover:bg-zinc-100 transition-all whitespace-nowrap">
+          <i data-lucide="video" class="h-4 w-4 text-cyan-500"></i>
+          <span>TikTok Viral</span>
+        </button>
+        <button onclick="switchTop10Platform('youtube')" id="tab-top10-youtube" class="top10-tab-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-zinc-600 hover:bg-zinc-100 transition-all whitespace-nowrap">
+          <i data-lucide="youtube" class="h-4 w-4 text-red-500"></i>
+          <span>YouTube Shorts</span>
+        </button>
+        <button onclick="switchTop10Platform('trends')" id="tab-top10-trends" class="top10-tab-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-zinc-600 hover:bg-zinc-100 transition-all whitespace-nowrap">
+          <i data-lucide="search" class="h-4 w-4 text-blue-500"></i>
+          <span>Google & X Trends</span>
+        </button>
+      </div>
+
+      <!-- Top 10 Cards Container -->
+      <div id="top10-preview-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
+        <!-- Rendered dynamically by site.js -->
+      </div>
+    </section>
+
+    <!-- LIVE CURATED WIRE FEED -->
+    <section class="mb-14">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-zinc-200">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="h-2 w-2 rounded-full bg-blue-600"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-zinc-500">Curated Wire</span>
+          </div>
+          <h2 class="font-editorial text-2xl sm:text-3xl font-extrabold text-zinc-950">
+            Essential Headlines & Context
+          </h2>
+        </div>
+        <p class="text-xs sm:text-sm text-zinc-500">
+          Filtered across 1,200+ primary sources • 0 sensationalism
+        </p>
+      </div>
+
+      <!-- Categories Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-8 scrollbar-none border-b border-zinc-100">
+        <button onclick="renderNewsGrid('all')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-zinc-900 text-white whitespace-nowrap">
+          All Stories
+        </button>
+        <button onclick="renderNewsGrid('economy')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-zinc-600 hover:bg-zinc-100 whitespace-nowrap">
+          Economy & Fed
+        </button>
+        <button onclick="renderNewsGrid('infrastructure')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-zinc-600 hover:bg-zinc-100 whitespace-nowrap">
+          Infrastructure
+        </button>
+        <button onclick="renderNewsGrid('technology')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-zinc-600 hover:bg-zinc-100 whitespace-nowrap">
+          Technology & AI
+        </button>
+        <button onclick="renderNewsGrid('health')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-zinc-600 hover:bg-zinc-100 whitespace-nowrap">
+          FDA & Healthcare
+        </button>
+        <button onclick="renderNewsGrid('politics')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-zinc-600 hover:bg-zinc-100 whitespace-nowrap">
+          Supreme Court & Law
+        </button>
+      </div>
+
+      <!-- Stories Grid -->
+      <div id="news-wire-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 transition-opacity duration-300">
+        <!-- Rendered dynamically by site.js -->
+      </div>
+    </section>
+
+    <!-- NEWSLETTER SUBSCRIPTION SECTION -->
+    <section id="newsletter-section" class="my-14">
+      <div class="rounded-3xl bg-zinc-900 text-white p-8 sm:p-12 shadow-xl border border-zinc-800 text-center max-w-4xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-widest text-zinc-400 block mb-2">Morning Intelligence</span>
+        <h3 class="font-editorial text-3xl sm:text-4xl font-extrabold mb-3">
+          What is in news today, delivered in 3 minutes.
+        </h3>
+        <p class="text-sm text-zinc-400 max-w-xl mx-auto mb-6 leading-relaxed">
+          The verified top 5 macro developments and the day's top viral reels. Delivered cleanly to your inbox at 7:00 AM sharp.
+        </p>
+
+        <form onsubmit="handleNewsletterSubmit(event)" class="space-y-4 max-w-lg mx-auto">
+          <!-- Frequency Toggle: Daily vs Weekly -->
+          <div class="inline-flex p-1 rounded-xl bg-zinc-800 border border-zinc-700 text-xs font-semibold">
+            <button type="button" onclick="setNewsletterFrequency('daily')" id="btn-freq-daily" class="px-4 py-1.5 rounded-xl bg-zinc-900 text-white font-semibold text-xs shadow-sm">
+              Daily 7:00 AM Digest
+            </button>
+            <button type="button" onclick="setNewsletterFrequency('weekly')" id="btn-freq-weekly" class="px-4 py-1.5 rounded-xl text-zinc-600 hover:text-zinc-900 text-xs font-semibold">
+              Weekly Sunday In-Depth
             </button>
           </div>
-        </div>
 
-        <!-- Platform Tabs -->
-        <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 scrollbar-none border-b border-zinc-100">
-          <button onclick="switchTop10Tab('instagram')" id="tab-top10-instagram" class="top10-tab-btn active inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-zinc-900 text-white shadow-sm">
-            <i data-lucide="instagram" class="h-4 w-4 text-pink-500"></i>
-            <span>Instagram Reels</span>
-          </button>
-          <button onclick="switchTop10Tab('tiktok')" id="tab-top10-tiktok" class="top10-tab-btn inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100">
-            <i data-lucide="video" class="h-4 w-4 text-cyan-500"></i>
-            <span>TikTok Viral</span>
-          </button>
-          <button onclick="switchTop10Tab('youtube')" id="tab-top10-youtube" class="top10-tab-btn inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100">
-            <i data-lucide="youtube" class="h-4 w-4 text-red-500"></i>
-            <span>YouTube Shorts</span>
-          </button>
-          <button onclick="switchTop10Tab('trends')" id="tab-top10-trends" class="top10-tab-btn inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100">
-            <i data-lucide="search" class="h-4 w-4 text-blue-500"></i>
-            <span>Search Trends</span>
-          </button>
-        </div>
-
-        <!-- Top 10 List Grid -->
-        <div id="top10-items-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6"></div>
-      </div>
-    </section>
-
-    <!-- Section Heading & Category Filter -->
-    <div class="max-w-6xl mx-auto px-4 mt-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-      <div>
-        <div class="flex items-center gap-2 mb-1">
-          <span class="h-2 w-2 rounded-full bg-blue-600"></span>
-          <span class="text-xs font-bold uppercase tracking-wider text-zinc-500">
-            Today's Curated US Wire
-          </span>
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-zinc-900">
-          Essential US Headlines & Why They Matter
-        </h2>
-      </div>
-      <p class="text-xs sm:text-sm text-zinc-500">
-        Aggregated in realtime • Stored in SQLite database • Verified primary reporting
-      </p>
-    </div>
-
-    <!-- Categories Tabs -->
-    <div class="max-w-6xl mx-auto px-4 my-6">
-      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-zinc-200">
-        <button class="category-btn active px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap bg-zinc-900 text-white shadow-sm flex items-center gap-2" data-cat="all">
-          <i data-lucide="layers" class="h-4 w-4"></i>
-          <span>All US News</span>
-          <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-700 text-zinc-200">6</span>
-        </button>
-        <button class="category-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 flex items-center gap-2" data-cat="economy">
-          <i data-lucide="trending-up" class="h-4 w-4"></i>
-          <span>Economy & Fed</span>
-          <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-500">1</span>
-        </button>
-        <button class="category-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 flex items-center gap-2" data-cat="politics">
-          <i data-lucide="landmark" class="h-4 w-4"></i>
-          <span>SCOTUS & Politics</span>
-          <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-500">1</span>
-        </button>
-        <button class="category-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 flex items-center gap-2" data-cat="tech">
-          <i data-lucide="cpu" class="h-4 w-4"></i>
-          <span>Tech & AI</span>
-          <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-500">1</span>
-        </button>
-        <button class="category-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 flex items-center gap-2" data-cat="health">
-          <i data-lucide="heart-pulse" class="h-4 w-4"></i>
-          <span>FDA & Health</span>
-          <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-500">1</span>
-        </button>
-        <button class="category-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 flex items-center gap-2" data-cat="infrastructure">
-          <i data-lucide="zap" class="h-4 w-4"></i>
-          <span>Infrastructure</span>
-          <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-500">1</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- News Grid Container -->
-    <div class="max-w-6xl mx-auto px-4 my-6">
-      <div id="news-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-    </div>
-
-    <!-- Newsletter Section (with Daily/Weekly & Unsubscribe link) -->
-    <section id="newsletter-section" class="w-full max-w-4xl mx-auto my-12 px-4">
-      <div class="relative rounded-3xl bg-gradient-to-br from-zinc-900 via-indigo-950 to-zinc-900 text-white p-8 sm:p-12 overflow-hidden shadow-2xl border border-indigo-900/40 text-center">
-        <div class="relative z-10 max-w-2xl mx-auto">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/30 mb-4">
-            <i data-lucide="sparkles" class="h-3.5 w-3.5 text-blue-400"></i>
-            <span>Curated US News • Verified Primary Sources</span>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input
+              id="newsletter-input-email"
+              type="email"
+              required
+              placeholder="Enter your email address..."
+              class="flex-1 px-4 py-3 rounded-xl bg-zinc-800 border border-zinc-700 text-white placeholder:text-zinc-500 text-sm focus:outline-none focus:border-zinc-500"
+            />
+            <button type="submit" class="px-6 py-3 rounded-xl bg-white text-zinc-900 font-bold text-sm hover:bg-zinc-100 transition-colors shrink-0">
+              Subscribe Free
+            </button>
           </div>
 
-          <h2 class="text-2xl sm:text-4xl font-black tracking-tight mb-3">
-            What is in US news today, delivered in 3 minutes.
-          </h2>
+          <p id="newsletter-msg" class="text-xs"></p>
 
-          <p class="text-sm sm:text-base text-zinc-300 mb-6 leading-relaxed">
-            Get the top 5 essential American developments, why they matter to your work and finances, plus the day's top viral reels.
-          </p>
-
-          <form id="newsletter-form" class="space-y-4">
-            <!-- Frequency Options -->
-            <div class="inline-flex p-1 rounded-2xl bg-zinc-800/80 border border-zinc-700 text-xs font-semibold mb-2">
-              <button type="button" onclick="setNewsFrequency('daily')" id="btn-freq-daily" class="px-4 py-1.5 rounded-xl bg-blue-600 text-white shadow-sm">
-                Daily 7:00 AM Digest
-              </button>
-              <button type="button" onclick="setNewsFrequency('weekly')" id="btn-freq-weekly" class="px-4 py-1.5 rounded-xl text-zinc-400 hover:text-white">
-                Weekly Sunday In-Depth
-              </button>
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-2 max-w-lg mx-auto">
-              <div class="relative flex-1">
-                <i data-lucide="mail" class="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400"></i>
-                <input
-                  id="newsletter-email"
-                  type="email"
-                  required
-                  placeholder="Enter your email address..."
-                  class="w-full pl-10 pr-4 py-3 rounded-xl bg-zinc-800/90 text-sm text-white placeholder:text-zinc-400 border border-zinc-700 focus:outline-none focus:border-blue-500"
-                />
-              </div>
-              <button
-                type="submit"
-                id="btn-newsletter-submit"
-                class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all shadow-lg shadow-blue-600/30 shrink-0"
-              >
-                Subscribe Free
-              </button>
-            </div>
-
-            <p id="newsletter-status-msg" class="text-xs font-medium"></p>
-
-            <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-zinc-400 pt-2">
-              <span class="flex items-center gap-1">
-                <i data-lucide="shield-check" class="h-3.5 w-3.5 text-zinc-500"></i>
-                Zero spam
-              </span>
-              <span>•</span>
-              <span>100% Free</span>
-              <span>•</span>
-              <button type="button" onclick="openUnsubscribeModal()" class="text-zinc-400 hover:text-white underline underline-offset-2">
-                Unsubscribe anytime with 1 click
-              </button>
-            </div>
-          </form>
-        </div>
+          <div class="flex items-center justify-center gap-3 text-xs text-zinc-400 pt-2">
+            <span>• No spam</span>
+            <span>• 100% Free</span>
+            <span>• <a href="/unsubscribe/" class="underline hover:text-white">1-Click Unsubscribe Anytime</a></span>
+          </div>
+        </form>
       </div>
     </section>
+
   </main>
 
-  <!-- Floating Smart Chatbot Trigger & Window -->
-  <button
-    id="btn-open-chatbot"
-    onclick="toggleChatBot()"
-    class="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 hover:from-blue-700 text-white shadow-xl shadow-blue-500/30 transition-all hover:scale-105 active:scale-95"
-  >
-    <div class="relative">
-      <i data-lucide="bot" class="h-5 w-5"></i>
-      <span class="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
-    </div>
-    <div class="text-left">
-      <p class="text-xs font-bold leading-tight">Ask US News Bot</p>
-      <p class="text-[10px] text-blue-100">Live AI Assistant</p>
-    </div>
-  </button>
-
-  <!-- Chatbot Modal Drawer -->
-  <div id="chatbot-modal" class="hidden fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[460px] h-[640px] max-h-[85vh] bg-white border border-zinc-200 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in duration-200">
-    <!-- Header -->
-    <div class="px-5 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 text-white flex items-center justify-between shrink-0 shadow-md">
-      <div class="flex items-center gap-3">
-        <div class="h-9 w-9 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
-          <i data-lucide="bot" class="h-5 w-5"></i>
+  <!-- NEWSDESK AI ASSISTANT SLIDE-OVER DRAWER -->
+  <div id="newsdesk-drawer" class="hidden fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[460px] h-[640px] max-h-[85vh] bg-white border border-zinc-300 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+    <!-- Drawer Header -->
+    <div class="px-5 py-4 bg-zinc-950 text-white flex items-center justify-between border-b border-zinc-800">
+      <div class="flex items-center gap-2.5">
+        <div class="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold">
+          <i data-lucide="sparkles" class="h-4 w-4"></i>
         </div>
         <div>
-          <h3 class="font-bold text-sm tracking-tight flex items-center gap-2">
-            <span>WhatIsInNewsToday Assistant</span>
-            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          </h3>
-          <p class="text-[11px] text-blue-100">Live US Aggregation Engine</p>
+          <h4 class="font-bold text-sm tracking-tight">NewsDesk Research Assistant</h4>
+          <p class="text-[11px] text-zinc-400">Grounded in verified wire reporting</p>
         </div>
       </div>
-      <button onclick="toggleChatBot()" class="text-white/80 hover:text-white p-1">
-        <i data-lucide="x" class="h-5 w-5"></i>
+      <button onclick="toggleNewsDeskAssistant()" class="text-zinc-400 hover:text-white p-1">
+        <i data-lucide="x" class="h-4 w-4"></i>
       </button>
     </div>
 
-    <!-- Conversation Messages -->
-    <div id="chat-messages-container" class="flex-1 overflow-y-auto p-4 space-y-4 text-xs sm:text-sm">
-      <!-- Proactive Section while user thinks -->
-      <div class="bg-blue-50/70 border border-blue-200 rounded-2xl p-4 text-zinc-800">
-        <div class="flex items-center gap-2 font-bold text-blue-800 mb-1">
-          <i data-lucide="sparkles" class="h-4 w-4"></i>
-          <span>What do you want to know about today's US news?</span>
-        </div>
-        <p class="text-xs text-zinc-600 mb-3">
-          Ask about the economy, Federal Reserve, Supreme Court rulings, tech hubs, or healthcare.
+    <!-- Message History -->
+    <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 text-xs sm:text-sm">
+      <div class="bg-stone-50 border border-zinc-200 rounded-xl p-4">
+        <h5 class="font-bold text-zinc-900 mb-1 flex items-center gap-1.5">
+          <i data-lucide="compass" class="h-4 w-4 text-blue-600"></i>
+          <span>What would you like to explore in today's news?</span>
+        </h5>
+        <p class="text-zinc-600 text-xs mb-3">
+          Ask specific questions about the economy, Federal Reserve, Supreme Court rulings, or technological hubs.
         </p>
 
-        <div class="pt-2 border-t border-blue-200/80">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-blue-700 block mb-2">
-            ⚡ Meanwhile, here are 6 breaking US stories you might be interested in:
-          </span>
-          <div id="chat-proactive-list" class="space-y-1.5 max-h-44 overflow-y-auto pr-1 scrollbar-none"></div>
+        <span class="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-2">
+          ⚡ Breaking Stories While You Think:
+        </span>
+        <div id="chat-proactive-chips" class="space-y-1.5 max-h-44 overflow-y-auto pr-1 scrollbar-none">
+          <!-- Populated by site.js -->
         </div>
       </div>
     </div>
 
-    <!-- Chat Input -->
-    <form id="chat-form" onsubmit="handleChatSubmit(event)" class="p-3 bg-white border-t border-zinc-200 flex items-center gap-2">
+    <!-- Chat Input Form -->
+    <form onsubmit="handleChatSubmit(event)" class="p-3 bg-white border-t border-zinc-200 flex items-center gap-2">
       <input
-        id="chat-input-text"
+        id="chat-user-input"
         type="text"
-        placeholder="Ask anything about today's US news..."
-        class="flex-1 bg-zinc-100 text-xs sm:text-sm text-zinc-900 placeholder:text-zinc-400 px-3.5 py-2.5 rounded-xl border border-transparent focus:border-blue-500 focus:outline-none"
+        placeholder="Ask anything about today's news..."
+        class="flex-1 bg-stone-100 text-xs sm:text-sm text-zinc-900 placeholder:text-zinc-400 px-3.5 py-2.5 rounded-xl border border-transparent focus:border-zinc-400 focus:outline-none"
       />
-      <button
-        type="submit"
-        class="h-9 w-9 rounded-xl bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shrink-0"
-      >
-        <i data-lucide="send" class="h-4 w-4"></i>
+      <button type="submit" class="h-9 w-9 rounded-xl bg-zinc-900 hover:bg-black text-white flex items-center justify-center shrink-0">
+        <i data-lucide="arrow-right" class="h-4 w-4"></i>
       </button>
     </form>
   </div>
 
-  <!-- Unsubscribe Modal -->
-  <div id="unsubscribe-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-    <div class="relative w-full max-w-md bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 shadow-2xl text-center">
-      <button onclick="closeUnsubscribeModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-zinc-600 p-1">
-        <i data-lucide="x" class="h-5 w-5"></i>
-      </button>
-      <div class="h-12 w-12 rounded-2xl bg-zinc-100 flex items-center justify-center text-zinc-600 mx-auto mb-4">
-        <i data-lucide="mail" class="h-6 w-6"></i>
-      </div>
-      <h3 class="text-xl font-bold mb-2">Unsubscribe from Daily Digest</h3>
-      <p class="text-xs text-zinc-500 mb-6">Enter your email to opt out in 1 click. You will receive no further emails.</p>
-
-      <form onsubmit="handleUnsubscribeSubmit(event)" class="space-y-3">
-        <input id="unsub-email-input" type="email" required placeholder="name@example.com" class="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-sm focus:outline-none" />
-        <button type="submit" id="btn-unsub-confirm" class="w-full py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold text-xs transition-colors">
-          Confirm 1-Click Unsubscribe
-        </button>
-        <p id="unsub-status-msg" class="text-xs font-medium"></p>
-      </form>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="border-t border-zinc-200 bg-white mt-16 py-12">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pb-8 border-b border-zinc-200">
-        <div>
-          <span class="font-bold text-lg text-zinc-900">
-            WhatIsIn<span class="text-blue-600">NewsToday</span>.com
-          </span>
-          <span class="ml-2 text-xs font-semibold px-2 py-0.5 rounded bg-zinc-100 text-zinc-600">US Edition</span>
-          <p class="text-xs text-zinc-500 mt-1 max-w-sm">
-            The objective, AI-curated daily US news intelligence and viral trends engine.
+  <!-- Primary Footer (No "US Edition" label) -->
+  <footer class="border-t border-zinc-200 bg-white mt-16 py-12 text-xs text-zinc-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-zinc-200">
+        <div class="md:col-span-1">
+          <a href="/" class="font-editorial text-xl font-bold text-zinc-950 mb-2 block">
+            WHAT IS IN NEWS TODAY
+          </a>
+          <p class="text-zinc-500 leading-relaxed max-w-sm">
+            Noise-free, verified daily news intelligence, Smart Brevity summaries, and top 10 viral reels across social platforms.
           </p>
         </div>
-        <div class="flex flex-wrap items-center gap-6 text-xs text-zinc-600">
-          <a href="#top10-section" class="hover:text-blue-600">Top 10 Reels</a>
-          <a href="#newsletter-section" class="hover:text-blue-600">Daily Digest</a>
-          <button onclick="openUnsubscribeModal()" class="text-rose-500 hover:text-rose-600 font-medium">Unsubscribe</button>
-          <a href="mailto:sponsor@whatisinnewstoday.com" class="hover:text-blue-600">Sponsorships</a>
-          <a href="#" class="hover:text-blue-600">Privacy Policy</a>
+
+        <div>
+          <h5 class="font-bold text-zinc-900 uppercase tracking-wider text-[11px] mb-3">Top 10 Rankings</h5>
+          <ul class="space-y-2">
+            <li><a href="/top-10/" class="hover:text-zinc-950 font-medium">Top 10 Directory</a></li>
+            <li><a href="/top-10/instagram/" class="hover:text-zinc-950">Instagram Reels Top 10</a></li>
+            <li><a href="/top-10/tiktok/" class="hover:text-zinc-950">TikTok Viral Top 10</a></li>
+            <li><a href="/top-10/youtube/" class="hover:text-zinc-950">YouTube Shorts Top 10</a></li>
+            <li><a href="/top-10/trends/" class="hover:text-zinc-950">Google & X Search Trends</a></li>
+            <li><a href="/top-10/archive/" class="hover:text-zinc-950 text-blue-700 font-semibold">Browse Daily Archives</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-bold text-zinc-900 uppercase tracking-wider text-[11px] mb-3">Curated News Wire</h5>
+          <ul class="space-y-2">
+            <li><a href="/news/us-federal-reserve-signals-neutral-rate-corridor/" class="hover:text-zinc-950">Federal Reserve & Economy</a></li>
+            <li><a href="/news/bipartisan-us-infrastructure-act-ev-corridor/" class="hover:text-zinc-950">Highway Infrastructure</a></li>
+            <li><a href="/news/silicon-valley-ai-supercomputing-hub-texas/" class="hover:text-zinc-950">Clean Compute & AI</a></li>
+            <li><a href="/news/us-fda-grants-accelerated-approval-alzheimers/" class="hover:text-zinc-950">FDA & Healthcare</a></li>
+            <li><a href="/news/us-supreme-court-issues-digital-privacy-ruling/" class="hover:text-zinc-950">Supreme Court Decisions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-bold text-zinc-900 uppercase tracking-wider text-[11px] mb-3">Policies & Preferences</h5>
+          <ul class="space-y-2">
+            <li><a href="/editorial/" class="hover:text-zinc-950 font-medium">Editorial Standards & Ethics</a></li>
+            <li><a href="/privacy/" class="hover:text-zinc-950">Privacy & Cookie Policy</a></li>
+            <li><a href="/sponsor/" class="hover:text-zinc-950">Advertising & Media Kit</a></li>
+            <li><a href="/unsubscribe/" class="text-rose-600 hover:text-rose-700 font-semibold">Unsubscribe / Email Settings</a></li>
+          </ul>
         </div>
       </div>
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400">
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-400">
         <p>© 2026 WhatIsInNewsToday.com. All rights reserved.</p>
-        <p>Curated for truth, clarity, and time-saving.</p>
+        <p class="font-mono-numbers text-[11px]">Auto-refreshed silently every 30 minutes • Zero clickbait</p>
       </div>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <!-- Core Script -->
+  <script src="/assets/site.js"></script>
 </body>
 </html>
