@@ -8,16 +8,19 @@ DirectoryIndex index.php index.html
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # 2. Allow existing files and directories to be accessed directly
+  # 2. Explicit admin route to index.php
+  RewriteRule ^admin/?$ /admin/index.php [L]
+
+  # 3. Allow existing files and directories to be accessed directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # 3. If a request matches a directory without trailing slash, redirect with slash
+  # 4. If a request matches a directory without trailing slash, redirect with slash
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^(.*[^/])$ https://%{HTTP_HOST}/$1/ [L,R=301]
 
-  # 4. Fallback for client routing
+  # 5. Fallback for client routing
   RewriteRule ^ index.html [L]
 </IfModule>
 
