@@ -19,6 +19,11 @@ REPORT_FILE = REPO_ROOT / 'data' / 'internal_linking_report.json'
 
 ENTITY_TARGETS = [
     {
+        "keywords": ["Nvidia", "Blackwell", "GB200", "NVL72", "Blackwell Ultra", "AI superclusters", "semiconductor computing"],
+        "url": "/news/nvidia-unveils-blackwell-ultra-ai-superclusters-record-demand/",
+        "title": "Nvidia Blackwell Ultra AI Superclusters & Earnings"
+    },
+    {
         "keywords": ["Federal Reserve", "monetary policy", "policy rates", "benchmark rate", "mortgage averages", "fixed 30-year", "interest rate corridor", "inflation metrics"],
         "url": "/news/us-federal-reserve-signals-neutral-rate-corridor/",
         "title": "Federal Reserve Rate Corridor & Inflation Analysis"

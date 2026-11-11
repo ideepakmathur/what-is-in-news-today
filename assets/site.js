@@ -2,6 +2,27 @@
 
 const NEWS_DATA = [
   {
+    id: 'us-news-nvidia',
+    slug: 'nvidia-unveils-blackwell-ultra-ai-superclusters-record-demand',
+    permalink: '/news/nvidia-unveils-blackwell-ultra-ai-superclusters-record-demand/',
+    title: 'Nvidia Deploys Next-Gen Blackwell Ultra AI Superclusters as Q3 Data Center Revenue Hits Historic $35 Billion',
+    category: 'Technology',
+    summaryBullets: [
+      'Nvidia initiated full-scale mass delivery of liquid-cooled GB200 NVL72 rack-scale systems delivering 1.4 exaflops per rack.',
+      'Quarterly data center revenue crossed $35.1 billion (up 112% YoY) propelled by generative AI multi-step reasoning workloads.',
+      'U.S. Department of Energy partnered with Nvidia to integrate Blackwell clusters into Argonne and Oak Ridge National Laboratories.'
+    ],
+    whyItMatters: 'Establishes domestic semiconductor computing as core national utility infrastructure while cutting AI per-token power consumption by 25x.',
+    perspectives: {
+      consensus: 'Cements American sovereign leadership in next-gen compute hardware and direct-to-chip liquid cooling engineering.',
+      divergence: 'Grid operators caution that multi-gigawatt sovereign cluster expansion will require accelerated nuclear and solar co-location.'
+    },
+    source: 'Nvidia Press & SEC Filings',
+    sourceUrl: 'https://investor.nvidia.com',
+    publishedAt: '14m ago',
+    readTime: '3 min read'
+  },
+  {
     id: 'us-news-1',
     slug: 'us-federal-reserve-signals-neutral-rate-corridor',
     permalink: '/news/us-federal-reserve-signals-neutral-rate-corridor/',
@@ -167,13 +188,13 @@ const TOP10_DATA = {
     { rank: 10, title: 'Why US Interstate Highways Are Numbered This Way', creator: 'Half as Interesting', views: '1.9M views', level: 'Trending', summary: 'The grid rules behind odd vs even and 3-digit bypass numbers.', link: 'https://youtube.com' }
   ],
   trends: [
-    { rank: 1, title: 'Federal Reserve Rate Decision & CPI', creator: 'Macroeconomics', views: '2.5M searches', level: 'Viral', summary: 'Breakout query surge following Chairman\'s monetary stability announcement.', link: 'https://trends.google.com' },
-    { rank: 2, title: 'Supreme Court Geofence Privacy Ruling', creator: 'SCOTUS & Law', views: '1.9M searches', level: 'Viral', summary: 'Legal analysts and citizens searching Fourth Amendment warrant requirements.', link: 'https://trends.google.com' },
-    { rank: 3, title: 'FDA Alzheimer\'s Blood Biomarker Test', creator: 'Healthcare & Biotech', views: '1.7M searches', level: 'Viral', summary: 'High search volume from patients seeking primary care screening details.', link: 'https://trends.google.com' },
-    { rank: 4, title: 'NASA Artemis Gateway Orbit Timeline', creator: 'Space Exploration', views: '1.4M searches', level: 'Viral', summary: 'Tracking crew launch schedules for the deep-space lunar station.', link: 'https://trends.google.com' },
-    { rank: 5, title: '30-Year Mortgage Rate Calculator 2026', creator: 'Real Estate', views: '1.1M searches', level: 'Viral', summary: 'Home shoppers calculating revised monthly payment amortizations.', link: 'https://trends.google.com' },
-    { rank: 6, title: 'Interstate EV Fast Charging Stations Near Me', creator: 'Clean Energy & Auto', views: '850K searches', level: 'Trending', summary: 'Route planners finding new high-speed highway stations.', link: 'https://trends.google.com' },
-    { rank: 7, title: 'High School Football State Playoff Brackets', creator: 'Sports', views: '780K searches', level: 'Trending', summary: 'Statewide Friday night scores and regional championship schedules.', link: 'https://trends.google.com' },
+    { rank: 1, title: 'Nvidia GB200 Blackwell Superclusters & Data Center Run-Rate', creator: 'Semiconductors & AI', views: '3.8M searches', level: 'Viral', summary: 'Breakout query surge following mass deployment of liquid-cooled GB200 rack systems and historic $35.1B revenue.', link: '/news/nvidia-unveils-blackwell-ultra-ai-superclusters-record-demand/' },
+    { rank: 2, title: 'Federal Reserve Rate Decision & CPI', creator: 'Macroeconomics', views: '2.5M searches', level: 'Viral', summary: 'Breakout query surge following Chairman\'s monetary stability announcement.', link: 'https://trends.google.com' },
+    { rank: 3, title: 'Supreme Court Geofence Privacy Ruling', creator: 'SCOTUS & Law', views: '1.9M searches', level: 'Viral', summary: 'Legal analysts and citizens searching Fourth Amendment warrant requirements.', link: 'https://trends.google.com' },
+    { rank: 4, title: 'FDA Alzheimer\'s Blood Biomarker Test', creator: 'Healthcare & Biotech', views: '1.7M searches', level: 'Viral', summary: 'High search volume from patients seeking primary care screening details.', link: 'https://trends.google.com' },
+    { rank: 5, title: 'NASA Artemis Gateway Orbit Timeline', creator: 'Space Exploration', views: '1.4M searches', level: 'Viral', summary: 'Tracking crew launch schedules for the deep-space lunar station.', link: 'https://trends.google.com' },
+    { rank: 6, title: '30-Year Mortgage Rate Calculator 2026', creator: 'Real Estate', views: '1.1M searches', level: 'Viral', summary: 'Home shoppers calculating revised monthly payment amortizations.', link: 'https://trends.google.com' },
+    { rank: 7, title: 'Interstate EV Fast Charging Stations Near Me', creator: 'Clean Energy & Auto', views: '850K searches', level: 'Trending', summary: 'Route planners finding new high-speed highway stations.', link: 'https://trends.google.com' },
     { rank: 8, title: 'Texas Clean Compute Campus Jobs', creator: 'Technology & Hiring', views: '690K searches', level: 'Trending', summary: 'Engineers and technicians researching positions at new data center.', link: 'https://trends.google.com' },
     { rank: 9, title: 'Fall Foliage Peak Tracker Map', creator: 'Travel & Nature', views: '620K searches', level: 'Trending', summary: 'Leaf-peeping peak week projections for the Northeast and Midwest.', link: 'https://trends.google.com' },
     { rank: 10, title: 'National Park Fee-Free Entrance Days', creator: 'Outdoors & Parks', views: '540K searches', level: 'Trending', summary: 'Annual calendar of open entrance dates across US National Parks.', link: 'https://trends.google.com' }
@@ -181,7 +202,7 @@ const TOP10_DATA = {
 };
 
 // 60-Second Audio Brief Script
-const DAILY_AUDIO_SCRIPT = `Welcome to What Is In News Today. Here is your sixty-second briefing. In the economy, the Federal Reserve signaled a neutral rate corridor as core inflation printed at two point three percent, easing thirty-year fixed mortgage rates. In national infrastructure, four point two billion dollars was released for eighty-five hundred highway fast-charging stalls along Interstate corridors. In technology, clean-powered AI compute campuses opened in Texas. In healthcare, the FDA cleared the first fifteen-minute blood test for early Alzheimer's. And the Supreme Court established Fourth Amendment warrant mandates for commercial location data. That is what is in news today.`;
+const DAILY_AUDIO_SCRIPT = `Welcome to What Is In News Today. Here is your sixty-second briefing. In technology and AI, Nvidia initiated nationwide deployments of next-generation GB200 NVL72 liquid-cooled superclusters as quarterly data center revenue surged to thirty-five billion dollars. In the economy, the Federal Reserve signaled a neutral rate corridor as core inflation printed at two point three percent. In national infrastructure, four point two billion was unlocked for highway fast-charging corridors. In healthcare, the FDA cleared a fifteen-minute blood test for Alzheimer's. And the Supreme Court established Fourth Amendment warrant mandates for commercial location data. That is what is in news today.`;
 
 // Auto-Refresh Logic (Every 30 Minutes Silently)
 const AUTO_REFRESH_INTERVAL_MS = 30 * 60 * 1000; // 30 minutes
@@ -543,6 +564,7 @@ function updateAudioPlayButton() {
 
 // Live Breaking News Ticker (USA Today & ABC News Style)
 const TICKER_HEADLINES = [
+  { text: "Nvidia ships GB200 NVL72 AI superclusters as Q3 data center revenue surges to historic $35B", link: "/news/nvidia-unveils-blackwell-ultra-ai-superclusters-record-demand/" },
   { text: "Federal Reserve maintains benchmark rate; 30-year mortgages ease to 5.85%", link: "/news/us-federal-reserve-signals-neutral-rate-corridor/" },
   { text: "DOT unlocks $4.2B for 8,500 highway EV charging stalls along I-80 & I-90", link: "/news/bipartisan-us-infrastructure-act-ev-corridor/" },
   { text: "Texas consortium activates 1.2GW off-grid solar-nuclear AI data center", link: "/news/silicon-valley-ai-supercomputing-hub-texas/" },

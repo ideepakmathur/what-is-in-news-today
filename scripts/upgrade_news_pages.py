@@ -16,7 +16,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 MOBILE_DOCK_HTML = '''  <!-- Mobile Bottom Touch Navigation Dock -->
-  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0E131F]/95 backdrop-blur-lg border-t border-zinc-200 dark:border-zinc-800 safe-bottom-dock shadow-2xl" aria-label="Mobile navigation">
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#121215]/95 backdrop-blur-lg border-t border-zinc-200 dark:border-zinc-800 safe-bottom-dock shadow-2xl" aria-label="Mobile navigation">
     <div class="grid grid-cols-5 items-center justify-around text-center py-2 text-[10px] font-bold text-zinc-500 dark:text-zinc-400">
       <a href="/" class="flex flex-col items-center gap-1 hover:text-zinc-900 dark:hover:text-white py-1">
         <i data-lucide="newspaper" class="h-5 w-5"></i>

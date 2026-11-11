@@ -1,19 +1,13 @@
 {
-  "timestamp": "2026-11-11T00:38:11.774505+00:00",
-  "total_articles_scanned": 12,
-  "total_links_created": 2,
+  "timestamp": "2026-11-11T01:33:18.527451+00:00",
+  "total_articles_scanned": 13,
+  "total_links_created": 1,
   "links": [
     {
-      "file": "health/intervention/index.html",
-      "keyword": "substance use",
-      "target_url": "/health/addictions/",
-      "title": "Addictions, Overdose Prevention & Harm Reduction"
-    },
-    {
-      "file": "health/psychiatry/index.html",
-      "keyword": "Depression",
-      "target_url": "/health/mental-health/",
-      "title": "Clinical Mental Health & Digital CBT Protocols"
+      "file": "news/nvidia-unveils-blackwell-ultra-ai-superclusters-record-demand/index.html",
+      "keyword": "interstate highway",
+      "target_url": "/news/bipartisan-us-infrastructure-act-ev-corridor/",
+      "title": "DOT Highway Fast Charging Infrastructure"
     }
   ]
 }
