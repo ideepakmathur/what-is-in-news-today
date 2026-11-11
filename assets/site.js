@@ -732,9 +732,150 @@ function readStoryAloud(storyId) {
   window.speechSynthesis.speak(utterance);
 }
 
+// ==========================================
+// Reading Progress Bar Indicator
+// ==========================================
+function initReadingProgress() {
+  const progressBar = document.getElementById('reading-progress');
+  if (!progressBar) return;
+
+  window.addEventListener('scroll', () => {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalHeight <= 0) return;
+    const progress = Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100));
+    progressBar.style.width = `${progress}%`;
+  }, { passive: true });
+}
+
+// ==========================================
+// Viral Social Sharing & Native Web Share API
+// ==========================================
+let activeSharePayload = {
+  title: 'What Is In News Today | Noise-Free Daily Intelligence',
+  url: window.location.href
+};
+
+function openNativeShare(title = '', url = '') {
+  activeSharePayload.title = title || document.title || 'What Is In News Today';
+  activeSharePayload.url = url || window.location.href;
+
+  // Use native share sheet on mobile when available
+  if (navigator.share) {
+    navigator.share({
+      title: activeSharePayload.title,
+      text: activeSharePayload.title + ' — Verified facts & why it matters on WhatIsInNewsToday:',
+      url: activeSharePayload.url
+    }).catch((err) => {
+      if (err.name !== 'AbortError') {
+        openShareModal();
+      }
+    });
+  } else {
+    openShareModal();
+  }
+}
+
+function openShareModal() {
+  const modal = document.getElementById('share-modal');
+  if (modal) {
+    if (typeof modal.showModal === 'function') {
+      modal.showModal();
+    } else {
+      modal.classList.remove('hidden');
+    }
+  }
+}
+
+function closeShareModal() {
+  const modal = document.getElementById('share-modal');
+  if (modal) {
+    if (typeof modal.close === 'function') {
+      modal.close();
+    } else {
+      modal.classList.add('hidden');
+    }
+  }
+}
+
+function shareToPlatform(platform) {
+  const text = encodeURIComponent(activeSharePayload.title + ' — via WhatIsInNewsToday.com');
+  const url = encodeURIComponent(activeSharePayload.url);
+  let shareUrl = '';
+
+  switch (platform) {
+    case 'x':
+      shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+      break;
+    case 'whatsapp':
+      shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
+      break;
+    case 'linkedin':
+      shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+      break;
+    case 'reddit':
+      shareUrl = `https://reddit.com/submit?url=${url}&title=${text}`;
+      break;
+    case 'facebook':
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+      break;
+  }
+
+  if (shareUrl) {
+    window.open(shareUrl, '_blank', 'noopener,noreferrer,width=600,height=500');
+  }
+}
+
+function copyShareLink() {
+  const url = activeSharePayload.url;
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('copy-share-btn');
+    if (btn) {
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<i data-lucide="check" class="h-4 w-4 text-emerald-500"></i><span class="text-emerald-600 font-bold">Copied!</span>`;
+      if (window.lucide) lucide.createIcons();
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        if (window.lucide) lucide.createIcons();
+      }, 2500);
+    }
+  });
+}
+
+// ==========================================
+// Interactive Sentiment & Reaction Meters
+// ==========================================
+function reactToStory(storyId, type, btn) {
+  const storageKey = `reaction_${storyId}_${type}`;
+  let count = parseInt(localStorage.getItem(storageKey) || '0', 10);
+  count += 1;
+  localStorage.setItem(storageKey, count.toString());
+
+  const badge = btn.querySelector('.react-count');
+  if (badge) {
+    badge.textContent = count;
+  }
+  btn.classList.add('animate-react-pop', 'border-blue-500', 'bg-blue-50', 'dark:bg-blue-950/60');
+  setTimeout(() => btn.classList.remove('animate-react-pop'), 300);
+}
+
+// ==========================================
+// Font Size Toggle for Accessibility (WCAG)
+// ==========================================
+let isLargeFont = false;
+function toggleFontSize() {
+  isLargeFont = !isLargeFont;
+  if (isLargeFont) {
+    document.documentElement.classList.add('text-lg');
+  } else {
+    document.documentElement.classList.remove('text-lg');
+  }
+}
+
 // Initialize on DOM load
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
+  initReadingProgress();
+
   // Format live masthead date
   const mastheadDate = document.getElementById('masthead-date');
   if (mastheadDate) {

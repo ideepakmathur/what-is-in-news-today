@@ -160,3 +160,48 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   outline: 2px solid #60A5FA;
 }
 
+/* Modern Web Guidance: Native <dialog> Modal Backdrop & Scroll Containment */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+/* Reading Progress Bar */
+#reading-progress {
+  transition: width 0.1s linear;
+}
+
+/* Mobile Bottom Dock Safe Area Padding */
+.safe-bottom-dock {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+/* Micro-Interaction Reaction Pop */
+@keyframes reactPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.22); }
+  100% { transform: scale(1); }
+}
+.animate-react-pop {
+  animation: reactPop 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* AdSense Slot Reservation (Zero CLS Guarantee) */
+.ad-slot-leaderboard {
+  min-height: 90px;
+}
+@media (max-width: 640px) {
+  .ad-slot-leaderboard {
+    min-height: 50px;
+  }
+}
+.ad-slot-rectangle {
+  min-height: 250px;
+}
+
+

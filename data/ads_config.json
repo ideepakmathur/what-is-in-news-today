@@ -1,0 +1,33 @@
+{
+  "adsense_enabled": false,
+  "client_id": "ca-pub-XXXXXXXXXXXXXXXX",
+  "slots": {
+    "header_leaderboard": {
+      "enabled": false,
+      "slot_id": "1234567890",
+      "format": "horizontal",
+      "label": "Top Leaderboard (728x90 / 320x50)"
+    },
+    "in_article": {
+      "enabled": false,
+      "slot_id": "2345678901",
+      "format": "fluid",
+      "layout_key": "-gw-3+1f-3d+2z",
+      "label": "In-Article Native Placement"
+    },
+    "sidebar_rail": {
+      "enabled": false,
+      "slot_id": "3456789012",
+      "format": "rectangle",
+      "label": "Sticky Sidebar Rectangle (300x250)"
+    },
+    "footer_anchor": {
+      "enabled": false,
+      "slot_id": "4567890123",
+      "format": "horizontal",
+      "label": "Bottom Sticky Mobile Anchor"
+    }
+  },
+  "custom_header_code": "<!-- AdSense auto ads snippet can be placed here -->",
+  "last_updated": "2026-11-11T00:30:00Z"
+}
